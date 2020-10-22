@@ -31,17 +31,11 @@ class Home extends Component {
         .then(response => response.json())
         .then(data => {
             for (let i = 0; i < data.length; i++) {
-                country_list.set(data[i].Slug, data[i].Country);
-
-                //sort country names in array//
-            }
-            country_list.sort();
-            
-            for(let i = 0; i < country_list.length; i++){
+               
                 let option = document.createElement('option');
-                //option.text = data[i].Country;
-                option.text = country_list[i].value;
-                option.value = country_list[i].key;
+                option.text = data[i].Country;
+               
+                option.value = data[i].Slug;
                 dropdown.add(option);
             }
             this.setState({
