@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -7,6 +6,8 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import Home from './Components/Home/Home'
+import Covid from './Components/Covid/Covid'
 
 function App() {
   return (
