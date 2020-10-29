@@ -7,7 +7,7 @@ class Home extends Component {
         super();
         this.inputRef = React.createRef();
         this.state = {
-            cases: {},
+            cases: [],
             countries: [],
             selection: ""
         }
@@ -24,41 +24,46 @@ class Home extends Component {
         dropdown.add(defaultOption);
         dropdown.selectedIndex = 0;
 
-        let country_list = {};
+        let country_names = [];
 
 
         fetch("https://api.covid19api.com/countries")
         .then(response => response.json())
         .then(data => {
+
             for (let i = 0; i < data.length; i++) {
-               
-                let option = document.createElement('option');
-                option.text = data[i].Country;
-               
-                option.value = data[i].Slug;
-                dropdown.add(option);
+                country_names.push({key:data[i].Country, value: data[i].Slug})
             }
+
             this.setState({
-                cases:data
+                cases:country_names
             })
-            console.log(this.state.cases[0].Slug)
+
+            country_names = country_names.sort(function (a,b) {
+                return a.value.localeCompare(b.value)
+            });
+
+            for(let i = 0; i < country_names.length; i++) {
+                let option = document.createElement('option')
+                option.text = country_names[i].key
+                option.value = country_names[i].value
+                dropdown.add(option)
+            }
+            console.log(country_names[0].key);
         })
+    }
+
+    selected(event) {
+        this.setState ({
+            selection: event.target.value
+        })
+        console.log(event.target.value);
     }
 
     _clicked() {
         window.location.href = `/countries/${this.state.selection}`;
     }
     
-
-    selected(event) {
-        this.setState ({
-            selection: event.target.value
-        })
-        console.log(this.state.selection);
-    }
-
-
-
 
 render(){
     return(

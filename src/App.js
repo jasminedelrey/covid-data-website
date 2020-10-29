@@ -17,7 +17,7 @@ function App() {
           <Home/>
         </Route>
 
-        <Route exact path="/Covid/:Covidid">
+        <Route exact path="/countries/:country">
         <Covid/> 
         </Route> 
 
