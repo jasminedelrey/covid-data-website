@@ -17,7 +17,7 @@ function App() {
           <Home/>
         </Route>
 
-        <Route exact path="/countries/:country">
+        <Route exact path="/result/:country_name">
         <Covid/> 
         </Route> 
 

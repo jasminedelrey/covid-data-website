@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "./Home.css"
 import {withRouter} from "react-router";
+import {Button} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends Component {
     constructor() {
@@ -32,7 +34,7 @@ class Home extends Component {
         .then(data => {
 
             for (let i = 0; i < data.length; i++) {
-                country_names.push({key:data[i].Country, value: data[i].Slug})
+                country_names.push({key: data[i].Country, value: data[i].Slug})
             }
 
             this.setState({
@@ -47,6 +49,7 @@ class Home extends Component {
                 let option = document.createElement('option')
                 option.text = country_names[i].key
                 option.value = country_names[i].value
+                option.id = country_names[i].key
                 dropdown.add(option)
             }
             console.log(country_names[0].key);
@@ -55,13 +58,13 @@ class Home extends Component {
 
     selected(event) {
         this.setState ({
-            selection: event.target.value
+            selection: event.target
         })
-        console.log(event.target.value);
+        console.log(event.target);
     }
 
     _clicked() {
-        window.location.href = `/countries/${this.state.selection}`;
+        window.location.href = `/result/${this.state.selection.value}`;
     }
     
 
@@ -71,10 +74,16 @@ render(){
             <h1>
                 COVID-Data Tracker
             </h1>
-            <select onChange = {this.selected} id= "country-dropdown">
-            </select>
 
-            <button onClick = {this._clicked}> Click me!</button>
+            <h3>
+                Pick a country to check COVID-19 confirmed cases, recovered cases, and deaths for October 2020
+            </h3>
+            <div className="selection-bar">
+
+            <select onChange = {this.selected} id= "country-dropdown"></select>
+            <Button variant= "primary" className="btn-primary" onClick = {this._clicked}> Click me!</Button> {' '}
+            
+            </div>
         </div>
     );
 }

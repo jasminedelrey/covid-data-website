@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
 import "./Covid.css"
 import {withRouter} from "react-router";
+import {Button} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class Covid extends Component {
     constructor() {
         super();
         this.state = {
-            country: {},
+            country_name: {},
             recovered: 0,
             deaths: 0,
             confirmed: 0,
-            country_name: ""
+            country_title: ""
         }
 
     }
 
     componentDidMount() {
-        const{country} = this.props.match.params;
-        console.log(country)
-        this.setState({
-            country_name: country
-        })
-        let case_types = ['confirmed', 'deaths', 'recovered']
-        // let requests = case_types.map(type => fetch())
-        let response1,response2,response3
+        const{country_name} = this.props.match.params;
+        console.log(country_name)
+        let new_country_name = country_name.replace(/-/g,' ').split(' ')
+        for (let i= 0; i<new_country_name.length; i++) {
+            new_country_name[i] = new_country_name[i].charAt(0).toUpperCase() + new_country_name[i].substring(1)
+        }
+        new_country_name = new_country_name.join(' ')
+        new_country_name = (new_country_name == "Korea North" ? new_country_name = "North Korea" : new_country_name)
+        new_country_name = (new_country_name == "Korea South" ? new_country_name = "South Korea" : new_country_name)
 
-        fetch(`https://api.covid19api.com/total/country/${country}/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z`)
+        this.setState({
+            country_title: new_country_name
+        })
+
+
+        fetch(`https://api.covid19api.com/total/country/${country_name}/status/confirmed?from=2020-10-01T00:00:00Z&to=2020-10-28T00:00:00Z`)
         .then(response => response.json())
         .then(data=> {
             for (let i = 0; i< data.length; i++) {
@@ -36,7 +44,7 @@ class Covid extends Component {
             })
         }
     })
-        fetch(`https://api.covid19api.com/total/country/${country}/status/deaths?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z`)
+        fetch(`https://api.covid19api.com/total/country/${country_name}/status/deaths?from=2020-10-01T00:00:00Z&to=2020-10-28T00:00:00Z`)
         .then(response => response.json())
         .then(data=> {
             for (let i = 0; i< data.length; i++) {
@@ -46,7 +54,7 @@ class Covid extends Component {
             })
         }
     })
-        fetch(`https://api.covid19api.com/total/country/${country}/status/recovered?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z`)
+        fetch(`https://api.covid19api.com/total/country/${country_name}/status/recovered?from=2020-10-01T00:00:00Z&to=2020-10-28T00:00:00Z`)
        
         .then(response => response.json())
         .then(data=> {
@@ -56,7 +64,6 @@ class Covid extends Component {
                     country: data
             })
 
-            console.log(data[0].Date)
             console.log("Current confirmed cases:" + this.state.confirmed)
         }
     })
@@ -71,7 +78,8 @@ class Covid extends Component {
     render() {
         return(
             <div id = "covid-data">
-                <h1> {this.state.country_name}</h1>
+                <h1> {this.state.country_title}</h1>
+                <h2> {this.state.country_title == "North Korea" ? "Oh no" : ""}</h2>
                 
                 <div className = "confirmed">
                     <div className = "confirmed-inner">
@@ -110,7 +118,7 @@ class Covid extends Component {
                 
                 
                 
-                <button id= "go-back" onClick = {this._clicked}> Back </button>
+                <Button variant="primary" id= "go-back" onClick = {this._clicked}> Back </Button>
                 
             </div>
         );
