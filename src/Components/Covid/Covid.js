@@ -70,17 +70,46 @@ class Covid extends Component {
 
     render() {
         return(
-            <div className = "covid-data">
+            <div id = "covid-data">
                 <h1> {this.state.country_name}</h1>
-                <div id = "confirmed">
-                <p> Confirmed Cases: {this.state.confirmed}</p>
+                
+                <div className = "confirmed">
+                    <div className = "confirmed-inner">
+                        <div className = "confirmed-front">
+                            <p> Confirmed</p>
+                        </div>
+                        <div className = "confirmed-back">
+                            <p className= "cases-style"> {this.state.confirmed}</p>
+                        </div>
                     </div>
-                <div id = "deaths">
-                <p> Deaths: {this.state.deaths}</p>
                 </div>
-                <div id = "recovered">
-                <p> Recovered: {this.state.recovered}</p>
+                
+                <div className = "deaths">
+                    <div className = "deaths-inner">
+                        <div className = "deaths-front">
+                            <p> Deaths</p>
+                        </div>
+                        <div className = "deaths-back">
+                            <p className= "cases-style"> {this.state.deaths}</p>
+                        </div>
+                    </div>
                 </div>
+                
+                <div className = "recovered">
+                    <div className = "recovered-inner">
+                        <div className = "recovered-front">
+                            <p> Recovered</p>
+                        </div>
+                        <div className = "recovered-back">
+                            <p className= "cases-style"> {this.state.recovered}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
                 <button id= "go-back" onClick = {this._clicked}> Back </button>
                 
             </div>
