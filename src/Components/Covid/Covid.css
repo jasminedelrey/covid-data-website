@@ -16,6 +16,27 @@ p {
 
 }
 
+#covid-data {
+  
+  margin-top: 40px;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+ 
+  
+  
+}
+
+ #covid-page #button{
+   margin-top: 40px;
+   display: flex;
+   justify-content: center;
+
+}
+
+
 
 .cases-style {
     font-size: 70px;

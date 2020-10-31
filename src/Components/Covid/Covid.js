@@ -77,9 +77,13 @@ class Covid extends Component {
 
     render() {
         return(
+            <div id = "covid-page">
+            <div id = "title">
+            <h1> {this.state.country_title}</h1>
+            <h2> {this.state.country_title == "North Korea" ? "Oh no" : ""}</h2>
+            </div>
+            
             <div id = "covid-data">
-                <h1> {this.state.country_title}</h1>
-                <h2> {this.state.country_title == "North Korea" ? "Oh no" : ""}</h2>
                 
                 <div className = "confirmed">
                     <div className = "confirmed-inner">
@@ -118,8 +122,14 @@ class Covid extends Component {
                 
                 
                 
-                <Button variant="primary" id= "go-back" onClick = {this._clicked}> Back </Button>
                 
+                
+            </div>
+
+            <div id = "button">
+            <Button variant="primary" id= "go-back" onClick = {this._clicked}> Back </Button>
+            </div>
+
             </div>
         );
     }
