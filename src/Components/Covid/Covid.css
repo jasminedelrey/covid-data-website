@@ -3,6 +3,8 @@
 p {
     font-family: 'Montserrat', sans-serif;
 }
+
+
 .covid-data #confirmed, .covid-data #recovered, .covid-data #deaths{
     background-color: lightblue;
     border-radius: 0px 0px 16px 16px;
@@ -182,10 +184,3 @@ p {
     color: white;
     transform: rotateY(180deg);
   }
-
-
-
-
-
-
-
