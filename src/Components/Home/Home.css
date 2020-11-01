@@ -19,3 +19,8 @@ h1, h3 {
 .hidden {
     display: none;
 }
+.home .selection-bar .btn-primary{
+    margin-left: 10px;
+    
+    
+}

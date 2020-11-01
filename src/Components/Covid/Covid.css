@@ -32,9 +32,10 @@ p {
 }
 
  #covid-page #button{
-   margin-top: 40px;
+   margin-top: 30px;
+   margin-left: 40px;
    display: flex;
-   justify-content: center;
+   /*justify-content: center*/;
 
 }
 
