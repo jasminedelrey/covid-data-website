@@ -51,6 +51,7 @@ class Home extends Component {
                 option.value = country_names[i].value
                 option.id = country_names[i].key
                 dropdown.add(option)
+                console.log(option)
             }
             console.log(country_names[0].key);
         })

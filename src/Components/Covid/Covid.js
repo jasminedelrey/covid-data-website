@@ -13,7 +13,8 @@ class Covid extends Component {
             recovered: 0,
             deaths: 0,
             confirmed: 0,
-            country_title: ""
+            country_title: "",
+            completed: false
         }
 
     }
@@ -38,46 +39,48 @@ class Covid extends Component {
         .then(data=> {
             let first_day = 0;
             let last_day = 0;
+            let total_array = [];
 
             for (let i = 0; i< data.length; i++) {
-                // console.log(data[i])
                 if (data[i].Date === "2020-10-01T00:00:00Z" && data[i].Province === "") {
                     first_day = first_day + data[i].Cases
-                    console.log(first_day)
                     
                 }
                 else if (data[i].Date === "2020-10-30T00:00:00Z" && data[i].Province === "") {
                     last_day = last_day + data[i].Cases
-                    console.log(last_day)
                 }
-                this.setState({
-                    confirmed : last_day - first_day,
-                    country: data
-            })
+                
         }
+        total_array.push(first_day);
+        total_array.push(last_day);
+        this.setState({
+            confirmed : total_array[1] - total_array[0],
+            country: data
+    })
     })
         fetch(`https://api.covid19api.com/total/country/${country_name}/status/deaths?from=2020-10-01T00:00:00Z&to=2020-10-31T00:00:00Z`)
         .then(response => response.json())
         .then(data=> {
             let first_day = 0;
             let last_day = 0;
+            let total_array = [];
 
             for (let i = 0; i< data.length; i++) {
-                console.log(data[i])
                 if (data[i].Date === "2020-10-01T00:00:00Z" && data[i].Province === "") {
                     first_day = first_day + data[i].Cases
-                    console.log(first_day)
                     
                 }
                 else if (data[i].Date === "2020-10-30T00:00:00Z" && data[i].Province === "") {
                     last_day = last_day + data[i].Cases
-                    console.log(last_day)
                 }
-                this.setState({
-                    deaths : last_day - first_day,
-                    country: data
-            })
+                
         }
+        total_array.push(first_day);
+        total_array.push(last_day);
+        this.setState({
+            deaths : total_array[1] - total_array[0],
+            country: data
+    })
     })
         fetch(`https://api.covid19api.com/total/country/${country_name}/status/recovered?from=2020-10-01T00:00:00Z&to=2020-10-31T00:00:00Z`)
        
@@ -85,24 +88,35 @@ class Covid extends Component {
         .then(data=> {
             let first_day = 0;
             let last_day = 0;
+            let total_array = [];
 
             for (let i = 0; i< data.length; i++) {
-                console.log(data[i])
                 if (data[i].Date === "2020-10-01T00:00:00Z" && data[i].Province === "") {
                     first_day = first_day + data[i].Cases
-                    console.log(first_day)
                     
                 }
                 else if (data[i].Date === "2020-10-30T00:00:00Z" && data[i].Province === "") {
                     last_day = last_day + data[i].Cases
-                    console.log(last_day)
                 }
-                this.setState({
-                    recovered : last_day - first_day,
-                    country: data
-            })
+                
         }
+        total_array.push(first_day);
+        total_array.push(last_day);
+        this.setState({
+            recovered : total_array[1] - total_array[0],
+            country: data,
+            // completed: true
     })
+    })
+
+
+    // if(this.state.completed === true) {
+    //     let message = document.getElementById('covid-data')
+    //     let hide_loading = document.getElementById('loading')
+    //     message.classList.remove("hidden")
+    //     hide_loading.classList.add("hidden")
+
+    // }
 }
 
 
@@ -113,8 +127,8 @@ class Covid extends Component {
 
     render() {
         return(
-            <div id = "covid-page">
 
+            <div id = "covid-page">
             <div id = "button">
             <Button id= "go-back" variant="outline-primary" onClick = {this._clicked}>  Back </Button>
             </div>
@@ -123,13 +137,15 @@ class Covid extends Component {
             <h1> {this.state.country_title}</h1>
             <h2> {this.state.country_title == "North Korea" ? <Alert variant="danger"> No data available. Please pick a different country.</Alert>: ""}</h2>
             </div>
+
+
             
             <div id = "covid-data">
                 
                 <div className = "confirmed">
                     <div className = "confirmed-inner">
                         <div className = "confirmed-front">
-                            <p> Total Confirmed Cases</p>
+                            <p className= "case-title"> Total Confirmed Cases</p>
                         </div>
                         <div className = "confirmed-back">
                             <p className= "cases-style"> {this.state.confirmed}</p>
@@ -140,7 +156,7 @@ class Covid extends Component {
                 <div className = "deaths">
                     <div className = "deaths-inner">
                         <div className = "deaths-front">
-                            <p> Total Deaths</p>
+                            <p className= "case-title"> Total Deaths</p>
                         </div>
                         <div className = "deaths-back">
                             <p className= "cases-style"> {this.state.deaths}</p>
@@ -151,7 +167,7 @@ class Covid extends Component {
                 <div className = "recovered">
                     <div className = "recovered-inner">
                         <div className = "recovered-front">
-                            <p> Total Recovered Cases</p>
+                            <p className= "case-title"> Total Recovered Cases</p>
                         </div>
                         <div className = "recovered-back">
                             <p className= "cases-style"> {this.state.recovered}</p>

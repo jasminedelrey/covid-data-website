@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
+#covid-page .hidden {
+  display: none;
+}
+
 p {
     font-family: 'Montserrat', sans-serif;
+}
+
+.case-title {
+  font-size: 30px
 }
 
 
@@ -34,7 +42,8 @@ p {
  #covid-page #button{
    margin-top: 40px;
    display: flex;
-   justify-content: center;
+   justify-content: left;
+   margin: 30px;
 
 }
 
@@ -80,13 +89,13 @@ p {
       
       /* Style the front side (fallback if image is missing) */
       .confirmed-front {
-        background-color: #bbb;
+        background-color: lightslategray;
         color: black;
       }
       
       /* Style the back side */
       .confirmed-back {
-        background-color: dodgerblue;
+        background-color: darkslateblue;
         color: white;
         transform: rotateY(180deg);
       }
@@ -127,13 +136,13 @@ p {
   
   /* Style the front side (fallback if image is missing) */
   .recovered-front {
-    background-color: #bbb;
+    background-color: lightslategray;
     color: black;
   }
   
   /* Style the back side */
   .recovered-back {
-    background-color: dodgerblue;
+    background-color: darkslateblue;
     color: white;
     transform: rotateY(180deg);
   }
@@ -174,13 +183,13 @@ p {
   
   /* Style the front side (fallback if image is missing) */
   .deaths-front {
-    background-color: #bbb;
+    background-color: lightslategray;
     color: black;
   }
   
   /* Style the back side */
   .deaths-back {
-    background-color: dodgerblue;
+    background-color: darkslateblue;
     color: white;
     transform: rotateY(180deg);
   }
