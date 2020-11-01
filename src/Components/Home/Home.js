@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./Home.css"
 import {withRouter} from "react-router";
-import {Button} from 'react-bootstrap';
+import {Button, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Home extends Component {
@@ -11,7 +11,7 @@ class Home extends Component {
         this.state = {
             cases: [],
             countries: [],
-            selection: ""
+            selection: "Choose Country"
         }
         this._clicked = this._clicked.bind(this);
         this.selected = this.selected.bind(this);
@@ -58,13 +58,20 @@ class Home extends Component {
 
     selected(event) {
         this.setState ({
-            selection: event.target
+            selection: event.target.value
         })
-        console.log(event.target);
+        console.log(event.target.value);
     }
 
     _clicked() {
-        window.location.href = `/result/${this.state.selection.value}`;
+        if (this.state.selection !== "Choose Country") {
+            window.location.href = `/result/${this.state.selection}`;
+        }
+        else {
+            let message = document.getElementById('error-message')
+            message.classList.remove("hidden")
+        }
+        console.log(this.state.selection)
     }
     
 
@@ -81,7 +88,8 @@ render(){
             <div className="selection-bar">
 
             <select onChange = {this.selected} id= "country-dropdown"></select>
-            <Button variant= "primary" className="btn-primary" onClick = {this._clicked}> Click me!</Button> {' '}
+            <Button variant= "primary" className="btn-primary" onClick = {this._clicked}> Search </Button> {' '}
+            <p id= "error-message" className = "hidden"> No country was selected. Please select a country.</p>
             
             </div>
         </div>

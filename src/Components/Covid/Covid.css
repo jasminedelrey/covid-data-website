@@ -3,6 +3,8 @@
 p {
     font-family: 'Montserrat', sans-serif;
 }
+
+
 .covid-data #confirmed, .covid-data #recovered, .covid-data #deaths{
     background-color: lightblue;
     border-radius: 0px 0px 16px 16px;
@@ -15,6 +17,27 @@ p {
     text-align: center;
 
 }
+
+#covid-data {
+  
+  margin-top: 40px;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+ 
+  
+  
+}
+
+ #covid-page #button{
+   margin-top: 40px;
+   display: flex;
+   justify-content: center;
+
+}
+
 
 
 .cases-style {
@@ -161,10 +184,3 @@ p {
     color: white;
     transform: rotateY(180deg);
   }
-
-
-
-
-
-
-
