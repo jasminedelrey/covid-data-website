@@ -5,6 +5,7 @@ import {Button, Alert} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 class Covid extends Component {
     constructor() {
         super();
@@ -13,12 +14,10 @@ class Covid extends Component {
             recovered: 0,
             deaths: 0,
             confirmed: 0,
-            country_title: "",
-            completed: false
+            country_title: ""
         }
 
     }
-    // https://api.covid19api.com/total/country/${country_name}/status/deaths?from=2020-10-01T00:00:00Z&to=2020-10-28T00:00:00Z
     componentDidMount() {
         const{country_name} = this.props.match.params;
         console.log(country_name)
@@ -46,7 +45,7 @@ class Covid extends Component {
                     first_day = first_day + data[i].Cases
                     
                 }
-                else if (data[i].Date === "2020-10-30T00:00:00Z" && data[i].Province === "") {
+                else if (data[i].Date === "2020-10-31T00:00:00Z" && data[i].Province === "") {
                     last_day = last_day + data[i].Cases
                 }
                 
@@ -58,7 +57,7 @@ class Covid extends Component {
             country: data
     })
     })
-        fetch(`https://api.covid19api.com/total/country/${country_name}/status/deaths?from=2020-10-01T00:00:00Z&to=2020-10-31T00:00:00Z`)
+        fetch(`https://api.covid19api.com/country/${country_name}/status/deaths?from=2020-10-01T00:00:00Z&to=2020-10-31T00:00:00Z`)
         .then(response => response.json())
         .then(data=> {
             let first_day = 0;
@@ -68,10 +67,12 @@ class Covid extends Component {
             for (let i = 0; i< data.length; i++) {
                 if (data[i].Date === "2020-10-01T00:00:00Z" && data[i].Province === "") {
                     first_day = first_day + data[i].Cases
+
                     
                 }
-                else if (data[i].Date === "2020-10-30T00:00:00Z" && data[i].Province === "") {
+                else if (data[i].Date === "2020-10-31T00:00:00Z" && data[i].Province === "") {
                     last_day = last_day + data[i].Cases
+
                 }
                 
         }
@@ -82,7 +83,7 @@ class Covid extends Component {
             country: data
     })
     })
-        fetch(`https://api.covid19api.com/total/country/${country_name}/status/recovered?from=2020-10-01T00:00:00Z&to=2020-10-31T00:00:00Z`)
+        fetch(`https://api.covid19api.com/country/${country_name}/status/recovered?from=2020-10-01T00:00:00Z&to=2020-10-31T00:00:00Z`)
        
         .then(response => response.json())
         .then(data=> {
@@ -95,7 +96,7 @@ class Covid extends Component {
                     first_day = first_day + data[i].Cases
                     
                 }
-                else if (data[i].Date === "2020-10-30T00:00:00Z" && data[i].Province === "") {
+                else if (data[i].Date === "2020-10-31T00:00:00Z" && data[i].Province === "") {
                     last_day = last_day + data[i].Cases
                 }
                 
@@ -104,19 +105,9 @@ class Covid extends Component {
         total_array.push(last_day);
         this.setState({
             recovered : total_array[1] - total_array[0],
-            country: data,
-            // completed: true
+            country: data
     })
     })
-
-
-    // if(this.state.completed === true) {
-    //     let message = document.getElementById('covid-data')
-    //     let hide_loading = document.getElementById('loading')
-    //     message.classList.remove("hidden")
-    //     hide_loading.classList.add("hidden")
-
-    // }
 }
 
 
