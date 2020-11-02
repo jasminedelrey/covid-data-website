@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+#covid-page .hidden {
+  display: none;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.case-title {
+  font-size: 30px
+}
+
+
+.covid-data #confirmed, .covid-data #recovered, .covid-data #deaths{
+    background-color: lightblue;
+    border-radius: 0px 0px 16px 16px;
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
+    font-size: 25px;
+    height: 100px;
+    margin-top: 50px;
+    margin-left: 20px;
+    display: inline-block;
+    text-align: center;
+
+}
+
+#covid-data {
+  
+  margin-top: 40px;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+ 
+  
+  
+}
+
+ #covid-page #button{
+   margin-top: 40px;
+   display: flex;
+   justify-content: left;
+   margin: 30px;
+
+}
+
+
+
+.cases-style {
+    font-size: 70px;
+}
+
+/*confrimed*/
+
+    .confirmed {
+        background-color: transparent;
+        width: 300px;
+        height: 200px;
+        border: 1px solid #f1f1f1;
+        perspective: 1000px; /* Remove this if you don't want the 3D effect */
+      }
+      
+      /* This container is needed to position the front and back side */
+      .confirmed-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+      
+      /* Do an horizontal flip when you move the mouse over the flip box container */
+      .confirmed:hover .confirmed-inner {
+        transform: rotateY(180deg);
+      }
+      
+      /* Position the front and back side */
+      .confirmed-front, .confirmed-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+      }
+      
+      /* Style the front side (fallback if image is missing) */
+      .confirmed-front {
+        background-color: lightslategray;
+        color: black;
+      }
+      
+      /* Style the back side */
+      .confirmed-back {
+        background-color: darkslateblue;
+        color: white;
+        transform: rotateY(180deg);
+      }
+
+/*recovered*/
+
+.recovered {
+    background-color: transparent;
+    width: 300px;
+    height: 200px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .recovered-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .recovered:hover .recovered-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .recovered-front, .recovered-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .recovered-front {
+    background-color: lightslategray;
+    color: black;
+  }
+  
+  /* Style the back side */
+  .recovered-back {
+    background-color: darkslateblue;
+    color: white;
+    transform: rotateY(180deg);
+  }
+
+/*deaths*/
+
+.deaths {
+    background-color: transparent;
+    width: 300px;
+    height: 200px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .deaths-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .deaths:hover .deaths-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .deaths-front, .deaths-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .deaths-front {
+    background-color: lightslategray;
+    color: black;
+  }
+  
+  /* Style the back side */
+  .deaths-back {
+    background-color: darkslateblue;
+    color: white;
+    transform: rotateY(180deg);
+  }

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&display=swap');
+h1, h3 {
+    font-family: 'Barlow', sans-serif;
+    text-align: center;
+}
+
+.home {
+    display: inline-block;
+    text-align: center;
+    background-color: lightgray;
+    height: 200px;
+    border: 3px solid gray;
+    margin-top: 40px;
+  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
+}
